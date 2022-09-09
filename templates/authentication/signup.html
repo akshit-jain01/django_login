@@ -6,12 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style1.css' %}">
 </head>
 
 <body>
-    <h2>Welcome to SignUp</h2>
-    <form action="/signup" method="post">
-        {% csrf_token%}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- <form action="/signup" method="post">
         <br>
         <label for="">Username</label>
         <input type="text" id="username" name="username" placeholder="Enter your Username(only characters or numbers)" required>
@@ -37,7 +44,49 @@
         <input type="password" id="pass2" name="pass2" placeholder="Confirm your Password" required>
         <br>
         <button type="submit">Sign Up</button>
-    </form>
+    </form> -->
+    <div class="container">
+        <h2>Welcome to SignUp</h2>
+        <form action="/signup" method="post">
+            {% csrf_token %}
+            <div class="txt_field">
+                <input type="text" id="username" name="username" pattern=".{8,12}" title="username between 8 to 12 chars and no special chars" required>
+                <span></span>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="fname" name="fname" required>
+                <span></span>
+                <label>First Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="lname" name="lname" required>
+                <span></span>
+                <label>Last name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="email" name="email" required>
+                <span></span>
+                <label>Email</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one uppercase letter, one lowercase letter and at least 8 or more characters" id="pass1" name="pass1" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" id="pass2" name="pass2" required>
+                <span></span>
+                <label>Confirm Password</label>
+            </div>
+            <!-- <div class="pass">Forgot Password</div> -->
+            <!-- <input type="submit" value="login"> -->
+            <input type="submit" value="signup">
+            <!-- <div class="signup_link"> -->
+            <!-- New Here?<a href="signup"> Signup</a> -->
+            <!-- </div> -->
+        </form>
+    </div>
 
 </body>
 

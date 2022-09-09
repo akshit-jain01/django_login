@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -115,9 +116,37 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    # 'Django_login/static', 
+    # BASE_DIR / "static",
+    ]
+VENV_PATH = os.path.dirname(BASE_DIR)
+STATIC_ROOT= os.path.join(os.path.join(VENV_PATH),"static root")
+
+MEDIA_URL = '/media/'
+MEDIAFILES_DIRS = [os.path.join(BASE_DIR, 'media'),]
+VENV_PATH = os.path.dirname(BASE_DIR)
+MEDIA_ROOT = os.path.join(os.path.join(VENV_PATH),"media root")
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# EMAIL_ACTIVE_FIELD = 'is_active'
+# EMAIL_SERVER = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_ADDRESS ='akshitjain.1112003@gmail.com'
+# EMAIL_FROM_ADDRESS = 
+# EMAIL_PASSWORD = 
+# EMAIL_MAIL_SUBJECT = 'Confirm your email'
+# EMAIL_MAIL_HTML = 'mail_body.html'
+# EMAIL_MAIL_PLAIN = 'mail_body.txt'
+# EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
+# EMAIL_PAGE_DOMAIN = 'http://mydomain.com/'
